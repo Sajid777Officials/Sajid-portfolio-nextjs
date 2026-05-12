@@ -1,16 +1,40 @@
-// app/layout.tsx
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata, Viewport } from "next";
+import CommandPalette from "@/components/CommandPalette";
+import ScrollProgress from "@/components/ScrollProgress";
+import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer"; // Footer ইমপোর্ট করা হলো
-
-
-const inter = Inter({ subsets: ["latin"] });
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sajid | MERN Stack Developer",
-  description: "Portfolio of a creative full-stack developer specializing in the MERN stack.",
+  title: {
+    default: "Sajid | Software Development Services",
+    template: "%s | Sajid",
+  },
+  description:
+    "Portfolio of Sajid, a software developer building web apps, APIs, dashboards, SaaS products, AI integrations, automations, and deployment-ready systems.",
+  keywords: [
+    "Sajid",
+    "Software Developer",
+    "Software Development Services",
+    "MERN Stack Developer",
+    "Next.js Developer",
+    "React Developer",
+    "Full Stack Developer",
+    "Portfolio",
+  ],
+  authors: [{ name: "Sajid" }],
+  openGraph: {
+    title: "Sajid | Software Development Services",
+    description:
+      "Web apps, APIs, dashboards, SaaS products, AI integrations, automations, and deployment-ready systems.",
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -20,12 +44,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#050505] text-white antialiased selection:bg-[#00ffcc] selection:text-black`}>
-       
-          <Navbar />
-          {children}
-          <Footer />
-        
+      <body className="bg-[#050505] text-white antialiased selection:bg-[#00ffcc] selection:text-black">
+        <ScrollProgress />
+        <Navbar />
+        {children}
+        <Footer />
+        <CommandPalette />
       </body>
     </html>
   );

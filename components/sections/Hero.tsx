@@ -1,48 +1,103 @@
-// components/sections/Hero.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
+import { ArrowRight, Mail, Sparkles } from "lucide-react";
 import ParticleMatrix from "../canvas/ParticleMatrix";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // GSAP Animation context setup for proper cleanup
     const ctx = gsap.context(() => {
       gsap.from(".hero-text", {
-        y: 50,
+        y: 42,
         opacity: 0,
         duration: 1,
-        stagger: 0.2, // Texts will appear one after another
+        stagger: 0.16,
         ease: "power3.out",
-        delay: 0.2,
+        delay: 0.15,
+      });
+
+      gsap.from(".hero-chip", {
+        y: 20,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        delay: 0.7,
       });
     }, containerRef);
 
-    return () => ctx.revert(); // Cleanup on unmount
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#050505]">
-      {/* Our 3D matrix canvas in the background */}
+    <section
+      id="home"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050505] px-4 sm:px-5"
+    >
       <ParticleMatrix />
-      
-      {/* Main text content in the foreground */}
-      <div 
-        ref={containerRef} 
-        className="relative z-10 flex flex-col items-center text-center px-4 pointer-events-none"
+
+      <div className="absolute inset-x-0 bottom-0 z-[1] h-48 bg-linear-to-t from-[#050505] to-transparent" />
+
+      <div
+        ref={containerRef}
+        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center text-center"
       >
-        <h1 className="hero-text text-5xl md:text-8xl font-bold text-white tracking-tighter mb-4">
-          I Build <span className="text-[#00ffcc]">Digital</span> <br/> Realities
+        <div className="hero-text mb-6 inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs leading-5 text-gray-300 backdrop-blur sm:px-4 sm:text-sm">
+          <Sparkles className="h-4 w-4 text-[#00ffcc]" />
+          <span>Software developer for complete digital products</span>
+        </div>
+
+        <h1 className="hero-text max-w-5xl text-4xl font-bold leading-[1.04] tracking-normal text-white min-[420px]:text-5xl sm:text-6xl md:text-8xl">
+          I Build{" "}
+          <span className="block text-[#00ffcc] sm:inline">Digital</span>
+          <br />
+          Realities
         </h1>
-        <p className="hero-text text-gray-400 text-lg md:text-xl max-w-2xl mb-8">
-          Expert MERN Stack Developer crafting scalable architectures and immersive web experiences.
+
+        <p className="hero-text mt-6 w-full max-w-xs text-sm leading-7 text-gray-400 sm:max-w-2xl sm:text-base md:text-xl md:leading-8">
+          <span className="sm:hidden">
+            Web apps, APIs, dashboards,
+            <br />
+            AI tools, and automation.
+          </span>
+          <span className="hidden sm:inline">
+            Full-stack web apps, backend APIs, dashboards, e-commerce systems,
+            AI integrations, automation tools, and deployment-ready software.
+          </span>
         </p>
-        <button className="hero-text pointer-events-auto px-8 py-4 bg-transparent border border-[#00ffcc] text-[#00ffcc] rounded-full hover:bg-[#00ffcc] hover:text-black transition-all duration-300 font-semibold tracking-wide">
-          View Projects
-        </button>
+
+        <div className="hero-text mt-9 flex flex-col items-center gap-3 sm:flex-row">
+          <Link
+            href="#services"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#00ffcc] px-7 py-3 font-bold text-black transition-colors hover:bg-white"
+          >
+            View Services
+            <ArrowRight className="h-5 w-5" />
+          </Link>
+
+          <Link
+            href="#contact"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-7 py-3 font-bold text-white backdrop-blur transition-colors hover:border-[#00ffcc]/50 hover:text-[#00ffcc]"
+          >
+            <Mail className="h-5 w-5" />
+            Contact Me
+          </Link>
+        </div>
+
+        <div className="mt-14 grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
+          {["Full-stack builds", "AI & automation", "Deployment support"].map((item) => (
+            <div
+              key={item}
+              className="hero-chip rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-sm font-semibold text-gray-300 backdrop-blur"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

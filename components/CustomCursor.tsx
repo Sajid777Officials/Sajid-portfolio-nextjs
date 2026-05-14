@@ -1,47 +1,70 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, Variants } from "framer-motion"; // Variants ইম্পোর্ট করা হলো
+import { useEffect, useRef } from "react";
 
-const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+export default function CustomCursor() {
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    let ringX = 0;
+    let ringY = 0;
+    let mouseX = 0;
+    let mouseY = 0;
+    let frame: number;
+    let visible = false;
+
+    const handleMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${mouseX - 3}px, ${mouseY - 3}px)`;
+      }
+
+      if (!visible) {
+        visible = true;
+        if (dotRef.current) dotRef.current.style.opacity = "1";
+        if (ringRef.current) ringRef.current.style.opacity = "1";
+      }
     };
 
-    window.addEventListener("mousemove", updateMousePosition);
+    const tick = () => {
+      ringX += (mouseX - ringX) * 0.1;
+      ringY += (mouseY - ringY) * 0.1;
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate(${ringX - 16}px, ${ringY - 16}px)`;
+      }
+
+      frame = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener("mousemove", handleMove);
+    frame = requestAnimationFrame(tick);
 
     return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
+      window.removeEventListener("mousemove", handleMove);
+      cancelAnimationFrame(frame);
     };
   }, []);
 
-  // এখানে : Variants যোগ করে দেওয়া হয়েছে
-  const variants: Variants = {
-    default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      transition: {
-        type: "spring", // এখন TypeScript বুঝতে পারবে এটি Framer Motion এর স্প্রিং অ্যানিমেশন
-        mass: 0.1,
-        stiffness: 800,
-        damping: 40,
-      },
-    },
-  };
-
   return (
-    <motion.div
-      variants={variants}
-      animate="default"
-      className="fixed top-0 left-0 w-8 h-8 bg-white rounded-full mix-blend-difference pointer-events-none z-50"
-      style={{
-        boxShadow: "0 0 15px rgba(255, 255, 255, 0.5)",
-      }}
-    />
+    <>
+      <div
+        ref={dotRef}
+        aria-hidden
+        className="pointer-events-none fixed left-0 top-0 z-9999 h-1.5 w-1.5 rounded-full bg-[#00ffcc] opacity-0"
+        style={{ willChange: "transform" }}
+      />
+      <div
+        ref={ringRef}
+        aria-hidden
+        className="pointer-events-none fixed left-0 top-0 z-9998 h-8 w-8 rounded-full border border-[#00ffcc]/60 opacity-0"
+        style={{ willChange: "transform" }}
+      />
+    </>
   );
-};
-
-export default CustomCursor;
+}

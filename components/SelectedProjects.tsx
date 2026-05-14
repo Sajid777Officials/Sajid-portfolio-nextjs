@@ -46,7 +46,7 @@ const featuredProjects: Project[] = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     category: "Next.js",
     status: "Book site",
-    image: "/portfolio-resources/uncle-money-cover.jpeg",
+    image: "/portfolio-resources/flipbook-cover.jpeg",
     deployUrl: "https://github.com/Sajid777Officials/uncle-money-website",
     githubUrl: "https://github.com/Sajid777Officials/uncle-money-website",
   },
@@ -242,7 +242,7 @@ export default function SelectedProjects() {
                   glareMaxOpacity={0.12}
                   glareColor="#00ffcc"
                   glarePosition="all"
-                  className="group flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-[#0c0c0c] transition-colors duration-300 hover:border-[#00ffcc]/35"
+                  className="group flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-[#0c0c0c] transition-all duration-300 hover:border-[#00ffcc]/35 hover:shadow-[0_0_32px_rgba(0,255,204,0.07)]"
                 >
                   <div className="relative aspect-video w-full overflow-hidden border-b border-white/10">
                     <Image

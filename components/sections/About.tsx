@@ -110,7 +110,7 @@ export default function About() {
               return (
                 <article
                   key={item.title}
-                  className="rounded-lg border border-white/10 bg-[#0b0b0b] p-5 transition-colors duration-300 hover:border-[#00ffcc]/40"
+                  className="rounded-lg border border-white/10 bg-[#0b0b0b] p-5 transition-all duration-300 hover:border-[#00ffcc]/40 hover:shadow-[0_0_32px_rgba(0,255,204,0.07)]"
                 >
                   <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg border border-[#00ffcc]/25 bg-[#00ffcc]/10 text-[#00ffcc]">
                     <Icon className="h-5 w-5" />

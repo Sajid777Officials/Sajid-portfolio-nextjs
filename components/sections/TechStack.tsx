@@ -103,7 +103,7 @@ export default function TechStack() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.55, delay: index * 0.08 }}
-                className="rounded-lg border border-white/10 bg-[#0a0a0a] p-6 transition-colors duration-300 hover:border-[#00ffcc]/30"
+                className="rounded-lg border border-white/10 bg-[#0a0a0a] p-6 transition-all duration-300 hover:border-[#00ffcc]/30 hover:shadow-[0_0_32px_rgba(0,255,204,0.07)]"
               >
                 <div className="mb-6 flex items-center justify-between">
                   <div

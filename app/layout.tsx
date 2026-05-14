@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import CommandPalette from "@/components/CommandPalette";
+import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -45,11 +47,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-[#050505] text-white antialiased selection:bg-[#00ffcc] selection:text-black">
+        <CustomCursor />
         <ScrollProgress />
-        <Navbar />
-        {children}
-        <Footer />
-        <CommandPalette />
+        <SmoothScroll>
+          <Navbar />
+          {children}
+          <Footer />
+          <CommandPalette />
+        </SmoothScroll>
       </body>
     </html>
   );

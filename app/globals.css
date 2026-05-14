@@ -17,8 +17,24 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background: var(--background);
+}
+
+/* Vignette — darkens viewport edges for depth */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 35;
+  background: radial-gradient(ellipse at 50% 40%, transparent 50%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+/* Hide default cursor on pointer devices — CustomCursor takes over */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 body {
@@ -55,10 +71,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   *,
   *::before,
   *::after {

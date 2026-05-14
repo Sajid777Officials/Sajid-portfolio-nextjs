@@ -145,7 +145,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.16 }}
                 transition={{ duration: 0.45, delay: index * 0.035 }}
-                className="group rounded-lg border border-white/10 bg-[#0a0a0a] p-6 transition-colors duration-300 hover:border-[#00ffcc]/40"
+                className="group rounded-lg border border-white/10 bg-[#0a0a0a] p-6 transition-all duration-300 hover:border-[#00ffcc]/40 hover:shadow-[0_0_32px_rgba(0,255,204,0.07)]"
               >
                 <div className="mb-5 flex items-start justify-between gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-[#00ffcc]/20 bg-[#00ffcc]/10 text-[#00ffcc] transition-transform group-hover:scale-105">

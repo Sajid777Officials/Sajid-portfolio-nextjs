@@ -40,6 +40,12 @@ export default function Hero() {
     >
       <ParticleMatrix />
 
+      {/* Ambient glow orb */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 z-[1] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ffcc]/[0.035] blur-[130px]"
+      />
+
       <div className="absolute inset-x-0 bottom-0 z-[1] h-48 bg-linear-to-t from-[#050505] to-transparent" />
 
       <div
@@ -53,7 +59,7 @@ export default function Hero() {
 
         <h1 className="hero-text max-w-5xl text-4xl font-bold leading-[1.04] tracking-normal text-white min-[420px]:text-5xl sm:text-6xl md:text-8xl">
           I Build{" "}
-          <span className="block text-[#00ffcc] sm:inline">Digital</span>
+          <span className="block bg-gradient-to-r from-[#00ffcc] to-[#00b4ff] bg-clip-text text-transparent sm:inline">Digital</span>
           <br />
           Realities
         </h1>
@@ -73,7 +79,7 @@ export default function Hero() {
         <div className="hero-text mt-9 flex flex-col items-center gap-3 sm:flex-row">
           <Link
             href="#services"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#00ffcc] px-7 py-3 font-bold text-black transition-colors hover:bg-white"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#00ffcc] px-7 py-3 font-bold text-black shadow-[0_0_28px_rgba(0,255,204,0.35)] transition-all hover:bg-white hover:shadow-[0_0_28px_rgba(255,255,255,0.2)]"
           >
             View Services
             <ArrowRight className="h-5 w-5" />

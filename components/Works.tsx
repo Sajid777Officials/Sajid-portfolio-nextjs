@@ -342,7 +342,7 @@ export default function Works() {
                     glareMaxOpacity={0.12}
                     glareColor="#00ffcc"
                     glarePosition="all"
-                    className="group flex h-full flex-col justify-between rounded-lg border border-white/10 bg-[#0c0c0c] p-6 transition-colors duration-300 hover:border-[#00ffcc]/40"
+                    className="group flex h-full flex-col justify-between rounded-lg border border-white/10 bg-[#0c0c0c] p-6 transition-all duration-300 hover:border-[#00ffcc]/40 hover:shadow-[0_0_32px_rgba(0,255,204,0.07)]"
                   >
                     <div>
                       <div className="mb-5 flex items-start justify-between gap-4">

@@ -118,7 +118,7 @@ export default function Contact() {
     >
       <div
         ref={contentRef}
-        className="mx-auto max-w-7xl rounded-lg border border-white/10 bg-[#0a0a0a] p-6 md:p-10 lg:p-14"
+        className="mx-auto max-w-7xl rounded-lg border border-white/10 bg-[#0a0a0a] p-6 shadow-[0_0_60px_rgba(0,255,204,0.04)] md:p-10 lg:p-14"
       >
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
@@ -270,7 +270,7 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#00ffcc] px-6 py-4 font-bold text-black transition-colors duration-300 hover:bg-white"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#00ffcc] px-6 py-4 font-bold text-black shadow-[0_0_24px_rgba(0,255,204,0.3)] transition-all duration-300 hover:bg-white hover:shadow-[0_0_24px_rgba(255,255,255,0.15)]"
             >
               Send Message
               <Send className="h-5 w-5" />
